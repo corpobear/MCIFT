@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use MCIFT, cite the exact software and benchmark commits you evaluated."
+title: "MCIFT"
+type: software
+authors:
+  - family-names: "Kasala"
+    given-names: "Martin"
+version: "0.1.0a1"
+date-released: 2026-07-21
+repository-code: "https://github.com/corpobear/MCIFT"
+license: "AGPL-3.0-only"
+abstract: >-
+  Experimental deterministic multichannel anomaly-detection and condition-monitoring
+  research software with explicit reference fitting, calibration, chronological
+  evaluation, and inspectable evidence.
