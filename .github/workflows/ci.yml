@@ -33,6 +33,8 @@ jobs:
       - run: ruff check .
       - run: mypy src
       - run: python tools/check_markdown_links.py
+      - name: Validate PyPI publication workflow structure
+        run: python -m pytest -q tests/security/test_publish_workflow.py
 
   unit-matrix:
     name: Unit / ${{ matrix.os }} / Python ${{ matrix.python }}

@@ -47,20 +47,21 @@ six-gate chronological calibration/evaluation and schema-4 save/load round trip.
 
 ## Validation
 
-Local Windows Python 3.11 validation passed Ruff, strict mypy, 119 tests with 3
+Local Windows Python 3.11 validation passed Ruff, strict mypy, 124 tests with 3
 symlink-only skips, 80% branch-aware coverage, Bandit, pip-audit after upgrading
 environment build tooling, build, Twine, Markdown links and artifact inspection.
-Python 3.11 with NumPy 1.26.4 passed the same 119 tests with 3 skips.
+Python 3.11 with NumPy 1.26.4 passed the same 124 tests with 3 skips.
 
 Private hosted validation passed for the exact preparation identifier before export.
-For public commit `8c553ef5ddfb7de537d0be7198261b9e0e4aaddb`, CI
-[run 29834066885](https://github.com/corpobear/MCIFT/actions/runs/29834066885), CodeQL
-[run 29834067105](https://github.com/corpobear/MCIFT/actions/runs/29834067105), and the
-manual release check
-[run 29834086668](https://github.com/corpobear/MCIFT/actions/runs/29834086668) all
-passed. The CodeQL `Analyze and upload` step passed and uploaded SARIF. The manual run
-produced the wheel, sdist, audit summary and SHA-256 checksums, which were independently
-inspected.
+For public `main` commit `33d83bfbfe2b15260af24c7ab51f0a7dc19d6ebf`, CI
+[run 29838333547](https://github.com/corpobear/MCIFT/actions/runs/29838333547) and
+CodeQL [run 29838333699](https://github.com/corpobear/MCIFT/actions/runs/29838333699)
+passed. The earlier non-publishing manual release check
+[run 29834086668](https://github.com/corpobear/MCIFT/actions/runs/29834086668) also
+passed at commit `8c553ef5ddfb7de537d0be7198261b9e0e4aaddb`. The CodeQL `Analyze
+and upload` step passed and uploaded SARIF. The manual run produced the wheel, sdist,
+audit summary and SHA-256 checksums, which were independently inspected; it contained
+no publication step and uploaded nothing to PyPI.
 
 ## Verdict
 

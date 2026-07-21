@@ -29,24 +29,24 @@ old commits or pull requests.
 |---|---|
 | Ruff | Passed |
 | Strict mypy | Passed, 27 source files |
-| Pytest | 119 passed, 3 Windows symlink-only skips |
+| Pytest | 124 passed, 3 Windows symlink-only skips |
 | Branch-aware coverage | 80% locally; 81% on hosted Linux |
 | Bandit | Passed |
 | pip-audit | No known vulnerabilities after current build-tool upgrade |
-| Python 3.11 + NumPy 1.26.4 | 119 passed, 3 Windows symlink-only skips |
+| Python 3.11 + NumPy 1.26.4 | 124 passed, 3 Windows symlink-only skips |
 | Build and Twine | Wheel and sdist passed |
 | Clean wheel and sdist install | Passed |
 | Six-gate/schema-4 round trip | Passed |
 | Markdown links | Passed |
 | Gitleaks public-tree scan | Zero findings |
 
-The final public validation results for commit
-`8c553ef5ddfb7de537d0be7198261b9e0e4aaddb` are:
+The latest verified public `main` validation baseline before the release-trigger
+workflow change is commit `33d83bfbfe2b15260af24c7ab51f0a7dc19d6ebf`:
 
 | Workflow | Result | Run | Evidence |
 |---|---|---:|---|
-| CI | Passed | 5 | [Run 29834066885](https://github.com/corpobear/MCIFT/actions/runs/29834066885) |
-| CodeQL | Passed | 5 | [Run 29834067105](https://github.com/corpobear/MCIFT/actions/runs/29834067105) |
+| CI | Passed | 7 | [Run 29838333547](https://github.com/corpobear/MCIFT/actions/runs/29838333547) |
+| CodeQL | Passed | 7 | [Run 29838333699](https://github.com/corpobear/MCIFT/actions/runs/29838333699) |
 | Public release check | Passed | 2 | [Run 29834086668](https://github.com/corpobear/MCIFT/actions/runs/29834086668) |
 
 The CI matrix covered Python 3.11-3.13 on Linux, Python 3.11/3.13 on Windows, Python
@@ -55,11 +55,13 @@ reported 122 passing tests and 81% branch-aware coverage. The public CodeQL job'
 `Analyze and upload` step passed, while its private-repository no-upload alternative
 was skipped; SARIF therefore uploaded successfully.
 
-The manual non-publishing release check produced artifact
+The manual non-publishing release check ran separately at commit
+`8c553ef5ddfb7de537d0be7198261b9e0e4aaddb` and produced artifact
 [`mcift-0.1.0a1-release-check-8c553ef5ddfb7de537d0be7198261b9e0e4aaddb`](https://github.com/corpobear/MCIFT/actions/runs/29834086668/artifacts/8496568824).
 The artifact contained the wheel, sdist, audit summary and SHA-256 checksums. Its
 GitHub artifact digest is
 `sha256:2c063e7d5fca684e835d30ecf6ce1784b870765859a0744e66224fd44d5f3343`.
+The manual workflow contains no publishing job and uploaded nothing to PyPI.
 
 The audited wheel contains 28 files and the sdist contains 34 files. Neither contains
 tests, datasets, benchmark outputs, Git metadata, caches, private paths, secrets,
