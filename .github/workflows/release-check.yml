@@ -1,4 +1,5 @@
 name: Public release check
+run-name: Public release check at ${{ github.sha }}
 
 on:
   workflow_dispatch:
