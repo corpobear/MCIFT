@@ -53,8 +53,9 @@ environment build tooling, build, Twine, Markdown links and artifact inspection.
 Python 3.11 with NumPy 1.26.4 passed the same 119 tests with 3 skips.
 
 Private hosted CI and CodeQL run 12 passed for the exact preparation identifier before
-export. Public CI, CodeQL SARIF upload and the manual non-publishing release check must
-also pass in the new repository.
+export. Public CI and CodeQL passed on the new repository, CodeQL uploaded its SARIF
+results, and the manual non-publishing release check passed. Its downloaded wheel,
+sdist, audit summary and SHA-256 checksums were independently inspected.
 
 ## Verdict
 
@@ -63,5 +64,6 @@ ARCHIVE PUBLIC**
 
 **Clean new-history public repository: READY FOR PUBLIC GITHUB ALPHA**
 
-The clean export is suitable for a new public root commit. The private archive must
-remain private. This audit authorizes no PyPI upload, tag or GitHub release.
+The public repository started from a new root commit and passed public validation. The
+private archive must remain private. This audit authorizes no PyPI upload, tag or
+GitHub release.

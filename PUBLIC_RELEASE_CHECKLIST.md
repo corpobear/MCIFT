@@ -8,17 +8,17 @@ without Git metadata into a new public repository with a new root commit.
 - [x] Create and verify a complete private backup.
 - [x] Rename the former repository to `MCIFT-private-archive` and verify it remains private.
 - [x] Export only the reviewed tree without `.git`.
-- [ ] Create the new public `MCIFT` repository from one new root commit.
-- [ ] Review `docs/publication-audit.md`.
-- [ ] Confirm benchmark commit links.
-- [ ] Confirm no dataset or private artifacts are included.
-- [ ] Run the manual `release-check` workflow.
-- [ ] Confirm public CI and CodeQL are green and CodeQL uploads results.
-- [ ] Enable GitHub private vulnerability reporting.
-- [ ] Verify public clone without authentication.
-- [ ] Verify README links and badges.
-- [ ] Verify CodeQL upload after visibility change.
-- [ ] Close private PR #4 without merging after public validation succeeds.
+- [x] Create the new public `MCIFT` repository from one new root commit.
+- [x] Review `docs/publication-audit.md`.
+- [x] Confirm benchmark commit links.
+- [x] Confirm no dataset or private artifacts are included.
+- [x] Run the manual `release-check` workflow.
+- [x] Confirm public CI and CodeQL are green and CodeQL uploads results.
+- [x] Enable GitHub private vulnerability reporting.
+- [x] Verify public clone without authentication.
+- [x] Verify README links and badges.
+- [x] Verify CodeQL upload after visibility change.
+- [x] Close private PR #4 without merging after public validation succeeds.
 
 Do not create a tag, GitHub release or PyPI publication as part of this operation.
 

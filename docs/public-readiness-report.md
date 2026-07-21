@@ -41,11 +41,11 @@ old commits or pull requests.
 | Gitleaks public-tree scan | Zero findings |
 
 Private hosted CI and CodeQL run 12 passed for the exact preparation identifier.
-The matrix covered Python 3.11-3.13 on Linux, Python 3.11/3.13 on Windows, Python
-3.11 on macOS and Python 3.11 with NumPy 1.26.4. The previous hosted Linux coverage
-job reported 122 passing tests and 81% branch-aware coverage. Public hosted CI,
-CodeQL SARIF upload and the manual non-publishing release check remain required after
-the new root commit is pushed.
+Public hosted CI and CodeQL also passed. The matrix covered Python 3.11-3.13 on Linux,
+Python 3.11/3.13 on Windows, Python 3.11 on macOS and Python 3.11 with NumPy 1.26.4.
+The final hosted Linux coverage job reported 122 passing tests and 81% branch-aware
+coverage. CodeQL uploaded public SARIF results. The manual non-publishing release
+check passed, and its wheel, sdist, audit summary and SHA-256 checksums were inspected.
 
 The audited wheel contains 28 files and the sdist contains 34 files. Neither contains
 tests, datasets, benchmark outputs, Git metadata, caches, private paths, secrets,
