@@ -31,6 +31,15 @@ python -m pip install "git+https://github.com/corpobear/MCIFT.git@<full-commit-s
 Replace the placeholder with a reviewed full SHA. Do not cite an unpinned branch when
 reporting scientific results.
 
+For the published alpha package:
+
+```bash
+python -m pip install "mcift==0.1.0a1"
+```
+
+Record the distribution filename and SHA-256 hash when the installed artifact itself
+is part of a benchmark claim.
+
 ## Frozen identities and separation
 
 Record both profile identifiers. The initial vibration protocol uses:
