@@ -40,12 +40,26 @@ old commits or pull requests.
 | Markdown links | Passed |
 | Gitleaks public-tree scan | Zero findings |
 
-Private hosted CI and CodeQL run 12 passed for the exact preparation identifier.
-Public hosted CI and CodeQL also passed. The matrix covered Python 3.11-3.13 on Linux,
-Python 3.11/3.13 on Windows, Python 3.11 on macOS and Python 3.11 with NumPy 1.26.4.
-The final hosted Linux coverage job reported 122 passing tests and 81% branch-aware
-coverage. CodeQL uploaded public SARIF results. The manual non-publishing release
-check passed, and its wheel, sdist, audit summary and SHA-256 checksums were inspected.
+The final public validation results for commit
+`8c553ef5ddfb7de537d0be7198261b9e0e4aaddb` are:
+
+| Workflow | Result | Run | Evidence |
+|---|---|---:|---|
+| CI | Passed | 5 | [Run 29834066885](https://github.com/corpobear/MCIFT/actions/runs/29834066885) |
+| CodeQL | Passed | 5 | [Run 29834067105](https://github.com/corpobear/MCIFT/actions/runs/29834067105) |
+| Public release check | Passed | 2 | [Run 29834086668](https://github.com/corpobear/MCIFT/actions/runs/29834086668) |
+
+The CI matrix covered Python 3.11-3.13 on Linux, Python 3.11/3.13 on Windows, Python
+3.11 on macOS and Python 3.11 with NumPy 1.26.4. The hosted Linux coverage job
+reported 122 passing tests and 81% branch-aware coverage. The public CodeQL job's
+`Analyze and upload` step passed, while its private-repository no-upload alternative
+was skipped; SARIF therefore uploaded successfully.
+
+The manual non-publishing release check produced artifact
+[`mcift-0.1.0a1-release-check-8c553ef5ddfb7de537d0be7198261b9e0e4aaddb`](https://github.com/corpobear/MCIFT/actions/runs/29834086668/artifacts/8496568824).
+The artifact contained the wheel, sdist, audit summary and SHA-256 checksums. Its
+GitHub artifact digest is
+`sha256:2c063e7d5fca684e835d30ecf6ce1784b870765859a0744e66224fd44d5f3343`.
 
 The audited wheel contains 28 files and the sdist contains 34 files. Neither contains
 tests, datasets, benchmark outputs, Git metadata, caches, private paths, secrets,
@@ -62,4 +76,6 @@ Production readiness, safety certification, general validation, superiority, cau
 localization, Exathlon compatibility and validation of a physical theory are not
 established.
 
-No PyPI upload, stable release or tag is part of this public-repository creation.
+The public-repository creation performed no PyPI upload, stable release or tag. PyPI
+publication is a separate, owner-confirmed operation using the dedicated OIDC Trusted
+Publishing workflow and the protected `pypi` environment.

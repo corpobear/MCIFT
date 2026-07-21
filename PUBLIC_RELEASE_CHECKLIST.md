@@ -20,7 +20,26 @@ without Git metadata into a new public repository with a new root commit.
 - [x] Verify CodeQL upload after visibility change.
 - [x] Close private PR #4 without merging after public validation succeeds.
 
-Do not create a tag, GitHub release or PyPI publication as part of this operation.
+The clean public-repository operation created no tag, GitHub release or PyPI
+publication.
+
+## PyPI alpha publication
+
+- [x] Confirm `mcift==0.1.0a1` is absent from the production PyPI JSON API.
+- [x] Confirm the protected GitHub environment `pypi` exists.
+- [x] Add a dedicated `publish-pypi.yml` workflow using job-scoped OIDC only.
+- [ ] Merge the release-preparation pull request after all required checks pass.
+- [ ] Obtain the exact owner confirmation: `APPROVE PYPI RELEASE MCIFT 0.1.0A1`.
+- [ ] Reconfirm that `mcift==0.1.0a1` is still absent from production PyPI.
+- [ ] Create signed or annotated tag `v0.1.0a1` from the validated `main` commit.
+- [ ] Create a GitHub prerelease from that tag.
+- [ ] Dispatch `publish-pypi.yml` using ref `v0.1.0a1`.
+- [ ] Verify the Trusted Publishing workflow and production PyPI files and hashes.
+- [ ] Update post-publication documentation through a second pull request.
+
+Never use a PyPI API token or place package-index credentials in GitHub secrets. The
+publish workflow accepts only the exact release tag, builds from that tag, and grants
+`id-token: write` only to the protected-environment publish job.
 
 ## Accidental-exposure rollback
 

@@ -47,8 +47,14 @@ For a source checkout with development tools:
 python -m pip install -e ".[dev,security]"
 ```
 
-No PyPI package is assumed by these instructions. See
-[REPRODUCIBILITY.md](REPRODUCIBILITY.md) for commit-pinned installation and checks.
+Install the public alpha from PyPI:
+
+```bash
+python -m pip install "mcift==0.1.0a1"
+```
+
+See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for commit-pinned source installation and
+validation checks.
 
 ## Five-minute example
 

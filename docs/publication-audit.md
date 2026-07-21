@@ -52,10 +52,15 @@ symlink-only skips, 80% branch-aware coverage, Bandit, pip-audit after upgrading
 environment build tooling, build, Twine, Markdown links and artifact inspection.
 Python 3.11 with NumPy 1.26.4 passed the same 119 tests with 3 skips.
 
-Private hosted CI and CodeQL run 12 passed for the exact preparation identifier before
-export. Public CI and CodeQL passed on the new repository, CodeQL uploaded its SARIF
-results, and the manual non-publishing release check passed. Its downloaded wheel,
-sdist, audit summary and SHA-256 checksums were independently inspected.
+Private hosted validation passed for the exact preparation identifier before export.
+For public commit `8c553ef5ddfb7de537d0be7198261b9e0e4aaddb`, CI
+[run 29834066885](https://github.com/corpobear/MCIFT/actions/runs/29834066885), CodeQL
+[run 29834067105](https://github.com/corpobear/MCIFT/actions/runs/29834067105), and the
+manual release check
+[run 29834086668](https://github.com/corpobear/MCIFT/actions/runs/29834086668) all
+passed. The CodeQL `Analyze and upload` step passed and uploaded SARIF. The manual run
+produced the wheel, sdist, audit summary and SHA-256 checksums, which were independently
+inspected.
 
 ## Verdict
 
@@ -65,5 +70,6 @@ ARCHIVE PUBLIC**
 **Clean new-history public repository: READY FOR PUBLIC GITHUB ALPHA**
 
 The public repository started from a new root commit and passed public validation. The
-private archive must remain private. This audit authorizes no PyPI upload, tag or
-GitHub release.
+private archive must remain private. Publication additionally requires the exact owner
+confirmation documented in the release checklist; this audit alone authorizes no
+PyPI upload, tag or GitHub release.
