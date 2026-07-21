@@ -35,22 +35,16 @@ See [claims and limitations](docs/claims-and-limitations.md) before citing resul
 
 Use Python 3.11 through 3.13. NumPy 1.26 is the minimum supported runtime version.
 
+Install the experimental public alpha from PyPI:
+
 ```bash
-python -m venv .venv
-python -m pip install --upgrade pip
-python -m pip install .
+python -m pip install "mcift==0.1.0a1"
 ```
 
 For a source checkout with development tools:
 
 ```bash
 python -m pip install -e ".[dev,security]"
-```
-
-Install the public alpha from PyPI:
-
-```bash
-python -m pip install "mcift==0.1.0a1"
 ```
 
 See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for commit-pinned source installation and

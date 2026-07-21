@@ -31,9 +31,11 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/corpobear/MCIFT"
+Homepage = "https://www.mcift.com"
 Repository = "https://github.com/corpobear/MCIFT"
 Issues = "https://github.com/corpobear/MCIFT/issues"
+Documentation = "https://github.com/corpobear/MCIFT#readme"
+Benchmarks = "https://github.com/corpobear/MCIFT-Benchmarks"
 
 [project.optional-dependencies]
 dev = [
