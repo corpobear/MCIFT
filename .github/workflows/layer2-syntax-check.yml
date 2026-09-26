@@ -1,0 +1,18 @@
+name: Layer2 syntax check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tmp/layer2_core_compile.py"
+      - ".github/workflows/layer2-syntax-check.yml"
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m py_compile tmp/layer2_core_compile.py
