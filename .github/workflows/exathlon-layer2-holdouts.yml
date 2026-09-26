@@ -1,0 +1,27 @@
+name: Package Exathlon Layer2 holdouts
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/exathlon-layer2-holdouts.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch holdouts
+        run: |
+          mkdir -p out
+          curl -fL --retry 5 --retry-delay 2             -o out/1_0_500000_19.zip             https://raw.githubusercontent.com/exathlonbenchmark/exathlon/master/data/raw/app1/1_0_500000_19.zip
+          curl -fL --retry 5 --retry-delay 2             -o out/1_5_1000000_86.zip             https://raw.githubusercontent.com/exathlonbenchmark/exathlon/master/data/raw/app1/1_5_1000000_86.zip
+          ls -lh out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: exathlon-layer2-holdouts
+          path: out
+          compression-level: 0
+          retention-days: 7
