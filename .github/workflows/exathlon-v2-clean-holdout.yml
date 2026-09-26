@@ -1,0 +1,27 @@
+name: Package Exathlon clean v2 holdout
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/exathlon-v2-clean-holdout.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Fetch untouched App-1 anomaly
+        run: |
+          mkdir -p out
+          curl -fL --retry 5 --retry-delay 2             -o out/1_4_1000000_80.zip             https://raw.githubusercontent.com/exathlonbenchmark/exathlon/master/data/raw/app1/1_4_1000000_80.zip
+          ls -lh out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: exathlon-v2-clean-holdout
+          path: out
+          compression-level: 0
+          retention-days: 7
