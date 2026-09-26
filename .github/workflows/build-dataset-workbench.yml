@@ -19,7 +19,7 @@ jobs:
           mkdir -p out
           git clone --depth 1 --filter=blob:none --sparse https://github.com/exathlonbenchmark/exathlon.git src
           cd src
-          git sparse-checkout set data/raw/app1/1_0_100000_15.zip data/raw/app1/1_2_100000_68.zip data/raw/ground_truth.zip
+          git sparse-checkout set --no-cone data/raw/app1/1_0_100000_15.zip data/raw/app1/1_2_100000_68.zip data/raw/ground_truth.zip
           cd ..
           cp src/data/raw/app1/1_0_100000_15.zip out/
           cp src/data/raw/app1/1_2_100000_68.zip out/
