@@ -1,0 +1,29 @@
+name: Package Exathlon healthy calibration runs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/exathlon-healthy-calibration.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch healthy App-1 runs
+        run: |
+          mkdir -p out
+          for f in             1_0_1000000_14.zip             1_0_100000_16.zip             1_0_10000_17.zip             1_0_500000_18.zip
+          do
+            curl -fL --retry 5 --retry-delay 2               -o "out/$f"               "https://raw.githubusercontent.com/exathlonbenchmark/exathlon/master/data/raw/app1/$f"
+          done
+          ls -lh out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: exathlon-healthy-calibration-runs
+          path: out
+          compression-level: 0
+          retention-days: 7
