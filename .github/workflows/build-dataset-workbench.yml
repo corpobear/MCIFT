@@ -1,0 +1,92 @@
+name: Build MCIFT dataset workbench
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-dataset-workbench.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exathlon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acquire representative Exathlon traces
+        run: |
+          mkdir -p out
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/exathlonbenchmark/exathlon.git src
+          cd src
+          git sparse-checkout set data/raw/app1/1_0_100000_15.zip data/raw/app1/1_2_100000_68.zip data/raw/ground_truth.zip
+          cd ..
+          cp src/data/raw/app1/1_0_100000_15.zip out/
+          cp src/data/raw/app1/1_2_100000_68.zip out/
+          cp src/data/raw/ground_truth.zip out/
+          cat > out/SOURCE.txt <<'EOF'
+          Exathlon official source: https://github.com/exathlonbenchmark/exathlon
+          Dataset license: CC BY-NC-SA 4.0
+          Working subset:
+          - 1_0_100000_15.zip : normal App 1 trace
+          - 1_2_100000_68.zip : anomalous App 1 trace
+          - ground_truth.zip  : official anomaly ranges
+          This is a compact working subset; full Exathlon remains canonical.
+          EOF
+          ls -lh out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mcift-exathlon-working
+          path: out
+          compression-level: 0
+          retention-days: 7
+
+  ims:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Acquire IMS Bearing test 2 mirror and compact aggregate
+        run: |
+          mkdir -p out/raw
+          git clone --depth 1 https://github.com/RicardoPSLopes/IMS-DATASET.git ims
+          cp -a ims/data/. out/raw/
+          curl -fL --retry 5             -o out/merged_dataset_2.csv             https://raw.githubusercontent.com/jieunparklee/predictive-maintenance/master/dataset/IMS/merged_dataset_2.csv
+          cat > out/SOURCE.txt <<'EOF'
+          Canonical dataset: NASA IMS Bearings / Center for Intelligent Maintenance Systems, University of Cincinnati.
+          NASA archive: https://phm-datasets.s3.amazonaws.com/NASA/4.+Bearings.zip
+          Raw Test-2 mirror used for transfer: https://github.com/RicardoPSLopes/IMS-DATASET
+          Compact aggregate mirror: https://github.com/jieunparklee/predictive-maintenance
+          Test 2 contains four bearing vibration channels and ends with Bearing 1 outer-race failure.
+          Preserve NASA attribution when publishing results.
+          EOF
+          echo "raw files: $(find out/raw -type f | wc -l)"
+          du -sh out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mcift-ims-bearing-test2
+          path: out
+          compression-level: 6
+          retention-days: 7
+
+  opentelemetry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acquire official OpenTelemetry multivariate metrics
+        run: |
+          mkdir -p out
+          curl -fL --retry 5             -o out/multivariate-metrics.json             https://raw.githubusercontent.com/open-telemetry/otel-arrow/main/data/multivariate-metrics.json
+          curl -fL --retry 5             -o out/multivariate-metrics.pb             https://raw.githubusercontent.com/open-telemetry/otel-arrow/main/data/multivariate-metrics.pb
+          cat > out/SOURCE.txt <<'EOF'
+          Official source: https://github.com/open-telemetry/otel-arrow/tree/main/data
+          Repository license: Apache-2.0
+          Contents: 10,000 multivariate HTTP telemetry events from four frontend sources.
+          JSON fields include DNS lookup, TCP connection, TLS handshake, server processing,
+          content transfer, size, health status, and failure count. PB is the OTLP protobuf form.
+          EOF
+          ls -lh out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mcift-opentelemetry-working
+          path: out
+          compression-level: 6
+          retention-days: 7
